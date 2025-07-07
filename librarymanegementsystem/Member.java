@@ -8,20 +8,19 @@ public class Member {
     private  static int memberCount = 1;
     private int membershipNumber;
     private String name;
-    ArrayList <Book> BookList;
-    ArrayList <Project> ProjectList;
+    ArrayList <Book> BookList = new ArrayList<Book>();
+    ArrayList <Project> ProjectList = new ArrayList<Project>();
     
 
-    public Member(String name, ArrayList<Book> BookList , ArrayList<Project> ProjectList) {
+    public Member(String name) {
         this.name = name;
-        this.BookList = BookList;
-        this.ProjectList = ProjectList;
         this.membershipNumber = memberCount;
         memberCount++;
     }
     
     public void borrow(Item obj , LocalDate borrowTime ){
         if(obj instanceof Book){
+            obj.borrowTime = borrowTime ;
             BookList.add((Book)obj);
             obj.maxReturnDate = ((Book) obj).borrowTime.plusDays(7);
                     
@@ -47,9 +46,14 @@ public class Member {
     
     public void printInfo() {
         System.out.println("name: "+ this.name + " , membership num : " + this.membershipNumber);
-        for(Book book : BookList){
-            book.printInfo();
+        if(! BookList.isEmpty()){
+            for(Book book : BookList){
+                book.printInfo();
+            }
+        }else{
+            System.out.println("has not borrowed any books ");
         }
+        
         System.out.println("");
     }
 

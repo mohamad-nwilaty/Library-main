@@ -15,6 +15,7 @@ class Library {
     }
     
     public static Member selectMember(){
+        System.out.println("");
         System.out.println("please select the number of the wanted member ");
         for(int i=0 ; i< memberArray.size() ; i++){
             System.out.println((i+1) + " " + memberArray.get(i).getName() + " ");
@@ -27,6 +28,34 @@ class Library {
                 System.out.println("enter a number from 1 to " + memberArray.size() );
             }
         }
+    }
+
+    public static Book selectBook(){
+        System.out.println("");
+        ArrayList<Book> arr = new ArrayList<Book>();
+        for(Book b : bookArray){
+             if( ! b.Taken){
+                arr.add(b);
+             }
+        }
+        if( !arr.isEmpty()){
+            System.out.println("please select the number of the wanted Book ");
+            for(int i=0 ; i< arr.size() ; i++){
+                System.out.println((i+1) + " " + arr.get(i).title + " "  );
+            }
+            while (true) {
+                int num = InputHelper.getInt("enter the number: ");
+                if(num <= arr.size()  && num > 0){
+                    return arr.get(num - 1);
+                }else{
+                    System.out.println("enter a number from 1 to " + (arr.size()) );
+                }
+            }
+        }else{
+            System.out.println("there are no availible books! ");
+            return null;
+        }
+        
     }
 
     public static void addBookToLibrary(Book b){
@@ -55,18 +84,11 @@ class Library {
     }
     
     public static void borrowBook(Member member , Book book , LocalDate borrowTime){
-        Boolean found = false;
 
         if(member.BookList.size() < 3){
-            for(Book b : bookArray){
-                if(b == book && !b.Taken){
-                    member.borrow(b, borrowTime);
-                    found = true;
-                    break;
-                }
-               if (!found) System.out.println("book not found"); 
+            member.borrow(book, borrowTime);
         }
-        }else{
+        else{
             System.out.println("member cant borrow more books! ");
         }
         

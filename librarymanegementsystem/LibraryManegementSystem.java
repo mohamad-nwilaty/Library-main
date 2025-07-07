@@ -20,6 +20,7 @@ public class LibraryManegementSystem {
         Book B7 = new Book("tengen", 440, " Damascus Library", "Basics Science", "011", "the Basics of sciences", LocalDate.now());
         Book B8 = new Book("Levi", 120, " Damascus Library", "Programming", "061", "oop in java", LocalDate.now());
 
+  
 
         ArrayList <Book> bookArr1 = new ArrayList<>();
         ArrayList <Book> bookArr2 = new ArrayList<>();
@@ -59,10 +60,10 @@ public class LibraryManegementSystem {
         projectArr2.add(p3); projectArr2.add(p4);
         projectArr3.add(p5); projectArr3.add(p6);  
 
-        Member m1 = new Member("Laith", bookArr1, projectArr1);
-        Member m2 = new Member("Mohammed", bookArr2, projectArr2);
-        Member m3 = new Member("Ilya", bookArr3, projectArr3);
-        Member m4 = new Member("morhaf", bookArr4, projectArr4);
+        Member m1 = new Member("Laith");
+        Member m2 = new Member("Mohammed");
+        Member m3 = new Member("Ilya");
+        Member m4 = new Member("morhaf");
 
 
         // initializing the library
@@ -86,13 +87,13 @@ public class LibraryManegementSystem {
             System.out.println("*** welcome to the Library please select one of the following ***");
             System.out.println("[1] : to print all the books in the library");
             System.out.println("[2] : to display all members and the books they have borrowed");
-            System.out.println("[3] : to add a book or a project to the library");
+            System.out.println("[3] : to add a book or a project to the library"); // add projects
             System.out.println("[4] : to search for a book by id , title or specialisation");
-            System.out.println("[5] : to borrow a book or project"); // *
+            System.out.println("[5] : to borrow a book or project"); // add projects
             System.out.println("[6] : to return a book or project"); // *
             System.out.println("[7] : to display all the third year projects");
-            System.out.println("[8] : to display all the members who borrowed an ai book");
-            System.out.println("[9] : to display all members who are late to return a book"); // fix borrow time issue is null
+            System.out.println("[8] : to display all the members who borrowed an ai book");// add a message if operation not made
+            System.out.println("[9] : to display all members who are late to return a book"); // add a message if operation not made
             System.out.println("[10] : to display all the borrowed books");
             System.out.println("[11] : to display all the availible projects (unborrowed) within a specific specilisation");
             System.out.println("[12] : to display members who borrowed a book within a time period");
@@ -154,7 +155,12 @@ public class LibraryManegementSystem {
 
                 case 5:
                     Member m = Library.selectMember();
-                    System.out.println(m.getName());
+                    Book b = Library.selectBook();
+                    if(b != null){
+                        LocalDate borrowDate = InputHelper.getDate("enter the borrow year "); // we input the date in order to be able to do the operation that ned an older date like being late to return a book
+                        Library.borrowBook(m, b, borrowDate);
+                    }
+                    
                     break;
 
                 case 7:
