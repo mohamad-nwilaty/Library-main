@@ -1,8 +1,5 @@
 
-
-
 import java.time.LocalDate;
-import java.util.Scanner;
 
 public  abstract class Item {
    protected String ID;

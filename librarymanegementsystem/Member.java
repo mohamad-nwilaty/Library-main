@@ -1,6 +1,4 @@
 
-
-
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -8,8 +6,8 @@ public class Member {
     private  static int memberCount = 1;
     private int membershipNumber;
     private String name;
-    ArrayList <Book> BookList = new ArrayList<Book>();
-    ArrayList <Project> ProjectList = new ArrayList<Project>();
+    private ArrayList <Book> BookList = new ArrayList<Book>();
+    private ArrayList <Project> ProjectList = new ArrayList<Project>();
     
 
     public Member(String name) {
@@ -19,28 +17,29 @@ public class Member {
     }
     
     public void borrow(Item obj , LocalDate borrowTime ){
-        if(obj instanceof Book){
-            obj.borrowTime = borrowTime ;
+        obj.borrowTime = borrowTime ;
+        obj.maxReturnDate = obj.borrowTime.plusDays(7);
+        obj.Taken = true ;
+        if(obj instanceof Book){ 
             BookList.add((Book)obj);
-            obj.maxReturnDate = ((Book) obj).borrowTime.plusDays(7);
                     
         }else{
             ProjectList.add((Project) obj);
-            obj.maxReturnDate = ((Project) obj).borrowTime.plusDays(7);
         }
         
-        obj.Taken = true ;
-        obj.borrowTime = borrowTime ;
+
+        
     }
     
-    public void giveBack(Item obj , LocalDate returnDate ){
+    public void giveBack(Item obj ){
+        obj.Taken = false ;
+        obj.returnDate = LocalDate.now() ;
         if(obj instanceof Book){
             BookList.remove((Book)obj);
         }else{
             ProjectList.remove((Project) obj);
         }
-        obj.Taken = false ;
-        obj.returnDate = returnDate ;
+        
 }
 
     
