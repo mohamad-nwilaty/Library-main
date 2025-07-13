@@ -34,6 +34,7 @@ public class Project extends Item{
     
     
     public void printInfo(){
+        System.out.println("");
         System.out.println("project(title: "+ title + ", specialisation: "+ specialisation + ", year: " + year + ", id : "+  ID + ", publish year: "+ publishYear + ", borrow time : "+ borrowTime + ", retrun time: "+ returnDate+", max return date: "+ maxReturnDate + " )");
         System.out.print("workTeam:( ");
         for(String person : workTeam){

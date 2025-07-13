@@ -52,14 +52,53 @@ public class InputHelper {
     public static String getSpecialisation(String propmt){
         System.out.print(propmt);
         while (true) {
-            String year = input.nextLine();
-            year = year.toLowerCase();
-            if(year.equals("ai") || year.equals("networks") || year.equals("basic-science")  || year.equals("programing")){
-                return year;
+            String special = input.nextLine();
+            special = special.toLowerCase();
+            if(special.equals("ai") || special.equals("networks") || special.equals("basic-science")  || special.equals("programing")){
+                return special;
             }else{
                 System.out.println("please enter ai , networks , basic-science or programing");
             }
         }
     }
+
+    public static String getBookId(String propmt){
+        System.out.print(propmt);
+        while (true) {
+            Boolean cond = true;
+            String id = input.nextLine();
+            for(Book b : Library.getBookArr()){
+                if(b.ID.equals(id)){
+                    cond = false;
+                    break;
+                }
+            }
+            if(cond){
+                return id;
+            }else{
+                System.out.println("enter an id that is not repeated! ");
+            }
+            }
+        }
+
+        public static String getProject(String propmt){
+            System.out.print(propmt);
+            while (true) {
+                Boolean cond = true;
+                String id = input.nextLine();
+                for(Project p : Library.getProjectArr()){
+                    if(p.ID.equals(id)){
+                        cond = false;
+                        break;
+                    }
+                }
+                if(cond){
+                    return id;
+                }else{
+                    System.out.println("enter an id that is not repeated! ");
+                }
+                }
+            }
+    
 
 }

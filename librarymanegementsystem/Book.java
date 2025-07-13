@@ -45,6 +45,7 @@ public class Book extends Item{
     }
    
     public void printInfo() {
+        System.out.println("");
         System.out.println("Book( author :" + author + ", title: "+ title + ", publish house : "+ publishingHouse + ", specialisation: "+ specialisation+", id : " + ID + ", publish year: "+ publishYear + ", borrow time : "+ borrowTime + ", retrun time: "+ returnDate+", max return date: "+ maxReturnDate + " )");
     }
     

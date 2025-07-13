@@ -17,6 +17,10 @@ class Library {
     public static ArrayList<Book> getBookArr(){
         return bookArray ;
     }
+
+    public static ArrayList<Project> getProjectArr(){
+        return projectArray ;
+    }
     
     public static Member selectMember(){
         System.out.println("");

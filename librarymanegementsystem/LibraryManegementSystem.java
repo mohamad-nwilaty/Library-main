@@ -92,16 +92,16 @@ public class LibraryManegementSystem {
                     break;
 
                 case 3:
-                    String enter = InputHelper.getString("enter b for book , p for project ");
-                    String id = InputHelper.getString("enter the id ");
+                    String enter = InputHelper.getString("enter b for book , p for project ");  
                     String title = InputHelper.getString("enter the title ");
-                    String specialisation = InputHelper.getSpecialisation("enter the specialisation (ai , networks , basic-science or programing)");
+                    String specialisation = InputHelper.getSpecialisation("enter the specialisation (ai , networks , basic-science or programing) ");
                     LocalDate publishYear = InputHelper.getDate("enter the publish year ");
                     switch (enter.toLowerCase()) {
                         case "b":
                             String author = InputHelper.getString("enter the name of the author ");
                             String publishHouse = InputHelper.getString("enter the name of the publishing house ");
                             int pageNum = InputHelper.getInt("enter the number of pages ");
+                            String id = InputHelper.getBookId("enter the id ");
                             Book newBook = new Book(author, pageNum, publishHouse, specialisation, id, title, publishYear);
                             Library.addBookToLibrary(newBook);
                             System.out.println("book added successfully");
@@ -109,13 +109,14 @@ public class LibraryManegementSystem {
                         
                         case "p":{
                             String year = InputHelper.getProjectYear("enter the year of the project (third-fourth-finale) ");
+                            String id1 = InputHelper.getProject("enter the id ");
                             ArrayList<String> workTeam = new ArrayList<>();
                             int count = InputHelper.getInt("enter the number of people on the work team ");
                             for(int i=0 ; i<count ; i++ ){
-                                String name = InputHelper.getString("enter the name of person number " + i+1 + " ");
+                                String name = InputHelper.getString("enter the name of person number " + (i+1) + " ");
                                 workTeam.add(name);
                             }
-                            Project newProject = new Project(workTeam, id, title, publishYear, specialisation, year);
+                            Project newProject = new Project(workTeam, id1, title, publishYear, specialisation, year);
                             Library.addProjectToLibrary(newProject);
                             break;
                         }
